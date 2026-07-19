@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#160f0b">
+    <meta name="description" content="Spot ridiculous AI-written Jira tickets before they reach the sprint.">
+    <title>Bluff Me Again!</title>
+    <link rel="preload" as="image" href="assets/developer-neutral.png">
+    <link rel="preload" as="image" href="assets/developer-caught.png">
+    <link rel="preload" as="image" href="assets/developer-smug.png">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="game" id="game">
+      <img class="scene" id="scene" src="assets/developer-neutral.png" alt="A cheeky developer in a black CODE hoodie offers you a blank task card across a fantasy office desk.">
+      <div class="shade" aria-hidden="true"></div>
+
+      <header class="hud" aria-label="Game status">
+        <div class="brand"><span>Bluff Me</span><strong>Again!</strong></div>
+        <div class="stats">
+          <div class="pill"><span class="label">Score</span><strong id="score">0</strong></div>
+          <div class="pill"><span class="label">Ticket</span><strong><span id="round">1</span>/10</strong></div>
+          <div class="pill hearts" id="hearts" aria-label="3 lives remaining"></div>
+        </div>
+      </header>
+
+      <section class="ticket" id="ticket" aria-labelledby="ticket-label ticket-summary">
+        <div class="ticket-top">
+          <span id="ticket-label">AI Jira summary</span>
+          <span id="ticket-id">B001</span>
+        </div>
+        <p id="ticket-summary">Loading ticket…</p>
+        <div class="feedback" id="feedback" aria-live="polite" aria-atomic="true"></div>
+      </section>
+
+      <div class="actions" id="actions" aria-label="Choose whether this ticket is a bluff">
+        <button class="bluff" id="bluff" type="button" data-answer="bluff">
+          <span aria-hidden="true">⚡</span> Bluff Me?!
+        </button>
+        <button class="good" id="good" type="button" data-answer="good">
+          <span aria-hidden="true">✓</span> Good
+        </button>
+        <p class="keys">Keyboard: <kbd>B</kbd> bluff · <kbd>G</kbd> good</p>
+      </div>
+
+      <section class="game-over" id="game-over" hidden aria-labelledby="result-title">
+        <div class="result-card">
+          <p class="eyebrow">Sprint review complete</p>
+          <h1 id="result-title">You survived Jira!</h1>
+          <div class="final-score"><strong id="final-score">0</strong><span>/ 10</span></div>
+          <p class="rank" id="rank">Rank: Requirements Rookie</p>
+          <button id="replay" type="button">Play Again</button>
+        </div>
+      </section>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+const assert = require("node:assert/strict")
+const { TICKETS, RunDecks, GameModel, rankFor } = require("./game.js")
+
+assert.equal(TICKETS.length, 100, "ticket count")
+assert.equal(new Set(TICKETS.map(ticket => ticket.summary)).size, 100, "unique summaries")
+assert.equal(TICKETS.filter(ticket => ticket.verdict === "bluff").length, 80, "bluff count")
+assert.equal(TICKETS.filter(ticket => ticket.verdict === "good").length, 20, "good count")
+TICKETS.forEach(ticket => {
+  assert.ok(ticket.id && ticket.summary && ticket.reason, `required fields: ${ticket.id}`)
+  assert.ok(["bluff", "good"].includes(ticket.verdict), `valid verdict: ${ticket.id}`)
+  assert.ok(ticket.summary.trim().split(/\s+/).length <= 15, `15 words maximum: ${ticket.id}`)
+})
+
+const decks = new RunDecks()
+const first = decks.nextRun()
+const second = decks.nextRun()
+assert.deepEqual([first.filter(t => t.verdict === "bluff").length, first.filter(t => t.verdict === "good").length], [8, 2])
+assert.equal(new Set([...first, ...second].map(ticket => ticket.id)).size, 20, "no repeat across early runs")
+
+const perfect = new GameModel(first)
+first.forEach(ticket => { assert.ok(perfect.answer(ticket.verdict).correct); perfect.unlock() })
+assert.equal(perfect.score, 10, "correct scoring")
+assert.equal(perfect.done, true, "completion after 10")
+assert.equal(rankFor(perfect.score), "Jira Oracle")
+
+const losses = new GameModel(TICKETS.filter(ticket => ticket.verdict === "good").slice(0, 10))
+assert.ok(losses.answer("bluff"), "first answer accepted")
+assert.equal(losses.answer("bluff"), null, "feedback lock rejects another answer")
+losses.unlock(); losses.answer("bluff")
+losses.unlock(); losses.answer("bluff")
+assert.equal(losses.lives, 0, "three-life depletion")
+assert.equal(losses.done, true, "early game over")
+
+const replay = new GameModel(decks.nextRun())
+assert.deepEqual([replay.score, replay.lives, replay.index], [0, 3, 0], "replay reset")
+console.log("✓ 100 tickets and all game rules validated")
