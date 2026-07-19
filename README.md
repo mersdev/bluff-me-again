@@ -39,4 +39,4 @@ It checks the ticket counts, unique summaries, required fields, word limits, dec
 - `style.css` — responsive UI, safe-area handling, touch targets, and reduced-motion support.
 - `game.js` — ticket data, shuffled decks, game state, keyboard controls, and reactions.
 - `validate.js` — small Node validation check.
-- `assets/` — generated neutral, caught, and smug developer scenes.
+- `assets/` — generated neutral, caught, and smug developer scenes plus the 64px favicon.
