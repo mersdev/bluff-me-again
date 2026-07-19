@@ -195,6 +195,7 @@ if (typeof document !== "undefined") {
   const actions = $("#actions")
   const buttons = [...actions.querySelectorAll("button")]
   const gameOver = $("#game-over")
+  const splash = $("#splash")
   const decks = new RunDecks()
   let model
 
@@ -286,11 +287,20 @@ if (typeof document !== "undefined") {
   })
 
   document.addEventListener("keydown", event => {
-    if (event.metaKey || event.ctrlKey || event.altKey || event.repeat || gameOver.hidden === false) return
+    if (event.metaKey || event.ctrlKey || event.altKey || event.repeat || gameOver.hidden === false || splash.hidden === false) return
     if (event.key.toLowerCase() === "b") answer("bluff")
     if (event.key.toLowerCase() === "g") answer("good")
   })
 
   $("#replay").addEventListener("click", startRun)
+  $("#home").addEventListener("click", () => {
+    startRun()
+    splash.hidden = false
+    $("#begin").focus()
+  })
+  $("#begin").addEventListener("click", () => {
+    splash.hidden = true
+    $("#bluff").focus()
+  })
   startRun()
 }

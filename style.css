@@ -201,6 +201,108 @@ kbd { padding: 1px 5px; border: 1px solid #fff8; border-radius: 4px; background:
 
 .game-over[hidden] { display: none; }
 
+.splash {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: linear-gradient(180deg, #100a08b8 0%, #140b08e8 100%);
+  backdrop-filter: blur(3px);
+}
+
+.splash[hidden] { display: none; }
+
+.splash-card {
+  width: min(100%, 410px);
+  padding: clamp(24px, 7vw, 38px) clamp(18px, 6vw, 32px) 22px;
+  border: 2px solid #ffe2a0;
+  border-radius: 30px;
+  background: linear-gradient(150deg, #342016f2, #160d0af5);
+  box-shadow: 0 14px 0 #080402, 0 24px 70px #000c;
+  text-align: center;
+}
+
+.splash-kicker {
+  margin: 0 0 9px;
+  color: var(--gold);
+  font: 900 .72rem/1 system-ui, sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.splash h1 {
+  margin: 0;
+  color: #fff8e9;
+  font-size: clamp(2.4rem, 12vw, 4.25rem);
+  font-weight: 1000;
+  letter-spacing: -.075em;
+  line-height: .9;
+  text-shadow: 0 4px 0 #5c2918, 0 8px 18px #000b;
+  transform: rotate(-2deg);
+}
+
+.splash h1 span { color: var(--gold); }
+
+.splash-lede {
+  max-width: 31ch;
+  margin: 22px auto 20px;
+  color: #ffe9c3;
+  font-size: clamp(.9rem, 3.9vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.rule-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 18px; }
+
+.rule {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 12px 7px 10px;
+  border: 1px solid #fff3;
+  border-radius: 16px;
+  background: #0005;
+}
+
+.rule-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 11px;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 1000;
+}
+
+.bluff-icon { background: var(--red); }
+.good-icon { background: var(--green); }
+.rule strong { font-size: .9rem; }
+.rule small { color: #d9c7ae; font: 700 .68rem/1.1 system-ui, sans-serif; }
+
+.start-button {
+  width: 100%;
+  min-height: 62px;
+  border: 3px solid #fff9;
+  border-radius: 18px;
+  background: linear-gradient(#f5b63f, #ce681f);
+  color: #fff;
+  cursor: pointer;
+  font-size: clamp(1.08rem, 4.8vw, 1.35rem);
+  font-weight: 1000;
+  text-shadow: 0 2px 0 #7b3515;
+  box-shadow: 0 6px 0 #32150f, 0 10px 18px #0009;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+  touch-action: manipulation;
+}
+
+.start-button span { margin-left: 8px; font-size: 1.4em; vertical-align: -1px; }
+.start-button:active { transform: translateY(5px); box-shadow: 0 1px 0 #32150f; }
+.start-button:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+.splash-note { margin: 17px 0 0; color: #b99f7f; font: 800 .68rem/1 system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+
 .result-card {
   width: min(100%, 390px);
   padding: 30px 22px;
@@ -217,7 +319,23 @@ kbd { padding: 1px 5px; border: 1px solid #fff8; border-radius: 4px; background:
 .final-score strong { font-size: 5rem; line-height: 1; }
 .final-score span { font-size: 1.2rem; }
 .rank { margin: 10px 0 24px; color: #ffe8bd; font-weight: 800; }
+.result-actions { display: grid; gap: 10px; }
 #replay { width: 100%; background: linear-gradient(#f3a936, #ce671f); }
+.home-button {
+  width: 100%;
+  min-height: 48px;
+  border: 2px solid #ffe0a1;
+  border-radius: 14px;
+  background: #fff1;
+  color: #ffe8bd;
+  cursor: pointer;
+  font-size: .9rem;
+  font-weight: 900;
+  transition: transform .12s ease, filter .12s ease;
+}
+.home-button:hover { filter: brightness(1.18); }
+.home-button:active { transform: translateY(2px); }
+.home-button:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
 
 @keyframes ticket-pop { 50% { transform: scale(1.045) rotate(-.5deg); } }
 @keyframes smug-pop { 50% { transform: scale(1.025); } }
@@ -227,6 +345,8 @@ kbd { padding: 1px 5px; border: 1px solid #fff8; border-radius: 4px; background:
   .stats { margin-top: 2px; }
   .ticket { top: 38%; height: 29%; }
   .keys { display: none; }
+  .splash-lede { margin-top: 14px; margin-bottom: 14px; }
+  .rule-row { margin-bottom: 13px; }
   .actions button { min-height: 52px; }
 }
 

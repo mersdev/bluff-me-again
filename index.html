@@ -50,7 +50,24 @@
           <h1 id="result-title">You survived Jira!</h1>
           <div class="final-score"><strong id="final-score">0</strong><span>/ 10</span></div>
           <p class="rank" id="rank">Rank: Requirements Rookie</p>
-          <button id="replay" type="button">Play Again</button>
+          <div class="result-actions">
+            <button id="replay" type="button">Play Again</button>
+            <button class="home-button" id="home" type="button">Back to splash</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="splash" id="splash" aria-labelledby="splash-title">
+        <div class="splash-card">
+          <p class="splash-kicker">AI sprint review</p>
+          <h1 id="splash-title">Bluff Me <span>Again!</span></h1>
+          <p class="splash-lede">A confident robot wrote these Jira summaries. Your job is to spot the ones that should never reach the sprint.</p>
+          <div class="rule-row" aria-label="How to play">
+            <div class="rule"><span class="rule-icon bluff-icon" aria-hidden="true">⚡</span><strong>Bluff Me?!</strong><small>Impossible or suspicious</small></div>
+            <div class="rule"><span class="rule-icon good-icon" aria-hidden="true">✓</span><strong>Good</strong><small>Actually ships</small></div>
+          </div>
+          <button class="start-button" id="begin" type="button">Start the review <span aria-hidden="true">→</span></button>
+          <p class="splash-note">10 tickets · 3 lives · zero mercy</p>
         </div>
       </section>
     </main>
